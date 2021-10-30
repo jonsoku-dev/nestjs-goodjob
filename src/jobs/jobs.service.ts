@@ -74,7 +74,7 @@ export class JobsService {
     if (!validatedUser._id.equals(foundJob.writer)) {
       throw new UnauthorizedException('권한이 없습니다.');
     }
-    await this.jobModel.remove({ _id: foundJob._id });
+    await this.jobModel.deleteOne({ _id: foundJob._id });
     return foundJob;
   }
 }

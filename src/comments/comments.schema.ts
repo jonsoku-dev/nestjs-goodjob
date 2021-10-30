@@ -19,6 +19,18 @@ const options: SchemaOptions = {
 export class Comment extends Document {
   @ApiProperty({
     example: 'sadsadlkasdjlkasjdkasdjsad',
+    description: 'post',
+    required: true,
+  })
+  @Prop({
+    required: true,
+    type: Types.ObjectId,
+  })
+  @IsNotEmpty()
+  post: Types.ObjectId | string;
+
+  @ApiProperty({
+    example: 'sadsadlkasdjlkasjdkasdjsad',
     description: '작성자',
     required: true,
   })
@@ -84,8 +96,6 @@ export class Comment extends Document {
   @Prop()
   @IsNumber()
   @IsPositive()
-  @Min(0)
-  @Max(5)
   @IsOptional()
   salary: number;
 
@@ -94,9 +104,11 @@ export class Comment extends Document {
     description: 'title',
     required: true,
   })
-  @Prop()
+  @Prop({
+    required: true,
+  })
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   title: string;
 
   @ApiProperty({
@@ -104,9 +116,11 @@ export class Comment extends Document {
     description: 'content',
     required: true,
   })
-  @Prop()
+  @Prop({
+    required: true,
+  })
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   content: string;
 }
 
